@@ -1,6 +1,8 @@
 import com.google.inject.AbstractModule;
 import java.time.Clock;
 
+import configs.Global;
+import configs.PlayConfigReader;
 import services.ApplicationTimer;
 import services.AtomicCounter;
 import services.Counter;
@@ -26,6 +28,9 @@ public class Module extends AbstractModule {
         bind(ApplicationTimer.class).asEagerSingleton();
         // Set AtomicCounter as the implementation for Counter.
         bind(Counter.class).to(AtomicCounter.class);
+
+        bind(PlayConfigReader.class).asEagerSingleton();
+        bind(Global.class).asEagerSingleton();
     }
 
 }
