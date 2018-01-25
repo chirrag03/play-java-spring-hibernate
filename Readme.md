@@ -3,14 +3,15 @@
 This is a basic CRUD application that integrates Spring (As a Spring container allows to easily manage application-specific beans) and hibernate JPA with Play 2.5 framework.
 
 Some important files to have a look at:
+
 	* app/Module.java 
 	  Play by default loads Module class present in the root package when the application starts. 
 	  PlayConfigReader and Global are binded as Eager Singletons here. This means, 
-		    1. New PlayConfigReader and Global objects will be created only once. 
-				2. Also they are created eagerly when the application starts up, rather than lazily when they are needed
+	  	1. New PlayConfigReader and Global objects will be created only once. 
+		2. Also they are created eagerly when the application starts up, rather than lazily when they are needed
 	                      
 	* app/configs/PlayConfigReader.java 
-	  Reads the entire application.conf. Now PlayConfigReader class can simply be imported from anywhere to access Play             Framework application.conf properties
+	  This class reads the entire application.conf & can be imported to access Play application.conf properties
 
 	* app/configs/Global.java 
 	  Sets up the Spring application context
@@ -19,7 +20,7 @@ Some important files to have a look at:
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Install jdk
+### Install JDK
 
 ```
 sudo apt-get install default-jdk
@@ -40,7 +41,7 @@ Unzip the downloaded file
 unzip typesafe-activator-1.3.12.zip 
 ```
 
-Add Activator to your PATH to have the activator command available in your cli.
+Add Activator to your PATH to have the activator command available in your cli
 
 ```
 export PATH=/home/ubuntu/activator-dist-1.3.12/bin/activator:$PATH
@@ -70,10 +71,10 @@ git clone https://github.com/chirrag03/play-java-spring-hibernate.git
 
 ```
 db {
-	default.driver		=
-	default.url		=
-	default.username	=
-	default.password 	= 
+	default.driver = com.mysql.jdbc.Driver
+	default.url = "jdbc:mysql://localhost:3306/v1?characterEncoding=UTF-8"
+	default.username = root
+	default.password = "xyz"
 }
 ```
 
@@ -97,12 +98,12 @@ localhost:9000
 To test CRUD APIs you need to create a test_table using the query below:
 
 ```
-	    CREATE TABLE `test_table` (
-	      `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-	      `name` varchar(20) DEFAULT NULL,
-	      `url` varchar(2048) NOT NULL DEFAULT '',
-	      PRIMARY KEY (`id`)
-	    ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+CREATE TABLE `test_table` (
+      `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+      `name` varchar(20) DEFAULT NULL,
+      `url` varchar(2048) NOT NULL DEFAULT '',
+      PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 ```
 
 Test the APIs. Eg:
